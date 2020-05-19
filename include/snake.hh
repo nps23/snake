@@ -9,17 +9,34 @@ class SnakeGame
 {
     std::vector<std::vector<char>> board;
     int headPosition[2];
-    enum direction {UP, DOWN, LEFT, RIGHT, STOP} currentDirection;
+    enum direction {UP, DOWN, LEFT, RIGHT, STOP} currentDirection;    
 public:
     bool keepPlaying;
 public:
-    SnakeGame();
-    void Setup();
-    void Draw();
-    void Input();
-    void Logic();
+    SnakeGame(); //should be private
+    void Setup(); // private
+    void Draw(); // private
+    void Input(); // private
+    void Logic(); //private
     
     void Play();
+private:
+    struct Position
+    {
+        int x;
+        int y;
+    };
+
+    struct Snake
+    {
+        std::vector<Position> snake;
+
+        Position headPosition;
+        Position tailPosition;
+    };
+    
+    Snake gameSnake;
+
 };
 
 #endif

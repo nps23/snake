@@ -114,6 +114,7 @@ void SnakeGame::Logic()
             if (headPosition[0]!= 0)
             {
                 headPosition[0] --;
+                this->gameSnake.headPosition.y --;
             }
         }
         break;
@@ -122,6 +123,7 @@ void SnakeGame::Logic()
             if (headPosition[0] != 19)
             {
                 headPosition[0] ++;
+                this->gameSnake.headPosition.y ++;
             }
         }
         break;
