@@ -13,7 +13,9 @@ sfml_include_flags = -I/Users/nathanialstodick/SFML-2.5.1-macOS-clang/include
 #main executable
 
 snake : $(objects)
-		clang++ $(flags) $(objects) -o snake $(sfml_link_flags) 
+		clang++ $(flags) $(objects) -o snake $(sfml_link_flags)
+		# append correct RPATH
+		install_name_tool -add_rpath /Users/nathanialstodick/SFML-2.5.1-macOS-clang/lib snake
 
 # this only changes when the snake and driver source files change
 main.o : snake.cpp main.cpp include/snake.hh
