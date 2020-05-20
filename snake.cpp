@@ -26,8 +26,11 @@ SnakeGame::SnakeGame()
     {
         row.resize(20);
     }
-    headPosition[0] = 9;
-    headPosition[1] = 9; 
+    
+    // make sure the snake is popualated with at least one element
+    this->gameSnake.snake.resize(1);
+    this->gameSnake.headPosition.x = 9;
+    this->gameSnake.headPosition.y = 9;
 }
 
 void SnakeGame::Setup()
@@ -49,6 +52,7 @@ void SnakeGame::Setup()
     }
     currentDirection = STOP;
     keepPlaying = true;
+
 }
 
 void SnakeGame::Draw()
@@ -64,8 +68,8 @@ void SnakeGame::Draw()
         std::cout << "\n";
     }
 
-    std::cout << "Headposition: " << headPosition[0] << " "
-        << headPosition[1] << std::endl;
+    std::cout << "Headposition: " << this->gameSnake.headPosition.x << " "
+        << this->gameSnake.headPosition.y << std::endl;
     
 }
 
@@ -95,51 +99,51 @@ void SnakeGame::Input()
 
 void SnakeGame::Logic()
 {
+    int& x_head_position = this->gameSnake.headPosition.x;
+    int& y_head_position = this->gameSnake.headPosition.y;
     // analyze the user input and control the snake
     // take the older position and store it
-    if (headPosition[0] == 0 || headPosition[0] == 19
-        || headPosition[1] == 0 || headPosition[1] == 19)
+    if (x_head_position == 0 || x_head_position == 19
+        || y_head_position == 0 || y_head_position == 19)
     {
-        board[headPosition[0]][headPosition[1]] = '#';
+        board[x_head_position][y_head_position] = '#';
     }
     else
     {
-        board[headPosition[0]][headPosition[1]] = ' ';
+        board[x_head_position][y_head_position] = ' ';
     }
     
     switch(currentDirection)
     {
         case UP:
         {
-            if (headPosition[0]!= 0)
+            if (y_head_position != 0)
             {
-                headPosition[0] --;
-                this->gameSnake.headPosition.y --;
+                y_head_position --;
             }
         }
         break;
         case DOWN:
         {
-            if (headPosition[0] != 19)
+            if (y_head_position != 19)
             {
-                headPosition[0] ++;
-                this->gameSnake.headPosition.y ++;
+                y_head_position ++;
             }
         }
         break;
         case LEFT:
         {
-            if (headPosition[1] != 0)
+            if (x_head_position!= 0)
             {
-                headPosition[1] --;
+                x_head_position --;
             }
         }
         break;
         case RIGHT:
         {
-            if(headPosition[1] != 19)
+            if(x_head_position != 19)
             {
-                headPosition[1] ++;
+                x_head_position ++;
             }
         }
         break;
@@ -148,5 +152,5 @@ void SnakeGame::Logic()
             // start of the game, basically do nothing
         }
     }
-    board[headPosition[0]][headPosition[1]] = 'O';
+    board[x_head_position][y_head_position] = 'O';
 }

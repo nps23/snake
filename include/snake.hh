@@ -8,8 +8,7 @@ const unsigned int BOARD_SIZE = 20;
 class SnakeGame
 {
     std::vector<std::vector<char>> board;
-    int headPosition[2];
-    enum direction {UP, DOWN, LEFT, RIGHT, STOP} currentDirection;    
+    enum direction {UP, DOWN, LEFT, RIGHT, STOP} currentDirection;
 public:
     bool keepPlaying;
 public:
@@ -31,8 +30,7 @@ private:
     {
         std::vector<Position> snake;
 
-        Position headPosition;
-        Position tailPosition;
+        Position& headPosition = snake[0];
     };
     
     Snake gameSnake;
