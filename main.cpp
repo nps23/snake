@@ -3,19 +3,30 @@
 #include "include/snake.hh"
 #include <thread>
 
+#include "include/sandbox.hh"
+
 using namespace std::literals::chrono_literals;
 
-int main()
+int main(int argc, char* argv[])
 {
-    SnakeGame game;
-    game.Setup();
-    while(game.keepPlaying)
+    switch(argc)
     {
-        game.Draw();
-        game.Input();
-        game.Logic();
-        std::this_thread::sleep_for(0.05s);
+        case 1:
+        {
+            SnakeGame game;
+            game.Setup();
+            while(game.keepPlaying)
+            {
+                game.Draw();
+                game.Input();
+                game.Logic();
+                std::this_thread::sleep_for(0.05s);
+            }
+        } break;
+        case 2: Sandbox::Debug(); break;
+        case 3: Sandbox::Test(); break;
     }
+
 }
 
 int TEST_SFML()
@@ -41,18 +52,3 @@ int TEST_SFML()
     return 0;
 
 }
-
-// bool keepPlaying = true;
-// while(keepPlaying)
-// {
-//     if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-//     {
-//         std::cout << "You pressed E! Would you like to continure?";
-//         char input;
-//         std::cin>>input;
-//         if (input == 'n')
-//         {
-//             keepPlaying = false;
-//         }
-//     }
-// }  

@@ -8,17 +8,22 @@ const unsigned int BOARD_SIZE = 20;
 class SnakeGame
 {
     std::vector<std::vector<char>> board;
+
+    // fruit on the board
+    int* fruit1;
+    int* fruit2;
     enum direction {UP, DOWN, LEFT, RIGHT, STOP} currentDirection;
 public:
     bool keepPlaying;
 public:
     SnakeGame(); //should be private
+    ~SnakeGame();
     void Setup(); // private
     void Draw(); // private
     void Input(); // private
     void Logic(); //private
     
-    void Play();
+    void Play(); // not yet implemented
 private:
     struct Position
     {
@@ -28,9 +33,7 @@ private:
 
     struct Snake
     {
-        std::vector<Position> snake;
-
-        Position& headPosition = snake[0];
+        std::vector<Position> snake;        
     };
     
     Snake gameSnake;
